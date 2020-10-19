@@ -6,7 +6,7 @@ export default {
   component: Button,
 };
 
-export const Basic = () => (
+export const Primary = () => (
   <Button> Primary Button </Button>
 );
 export const Secondary = () => (

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@storybook/addon-knobs": "^6.0.26",
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
     "eslint": "^7.11.0",
