@@ -7,4 +7,7 @@ export const theme = {
   black: 'hsl(0, 0%,0%)',
   light: 300,
   bold: 300,
+  fontSizeS: '20px',
+  fontSizexl: '60px',
+  fontSizel: '40px',
 };

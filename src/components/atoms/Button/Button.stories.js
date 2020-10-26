@@ -10,19 +10,20 @@ export default {
 };
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template = (args) => <Button {...args} />;
+const Story = (args) => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const Primary = Story.bind({});
 Primary.args = {
   primary: true,
   label: 'Kasia',
-  background: 'white',
+  background: '#ff0',
 };
 
-export const Secondary = Template.bind({});
+export const Secondary = Story.bind({});
 Secondary.args = {
   label: 'Button',
   text: 'Secondary',
+  primary: false,
 };
 
 // export const Primary = Template.bind() => (

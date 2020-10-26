@@ -1,11 +1,14 @@
-import react from 'react';
-import { witKnobs } from '@storybook/addon-knobs';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '..src/theme/mainTheme';
 
-// addDecorator((story) => (
-//   <ThemeProvider theme={theme}>
-//     {story()}
-//   </ThemeProvider>
-// ));
+export const decorators = [
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <Story />
+    </ThemeProvider>
+  ),
+];
 
 export const parametres = {
   actions: { argTypesRegex: '^on[A-Z].*' },

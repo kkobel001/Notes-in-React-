@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 const Heading = styled.h1`
   font-size: ${({ theme, big }) =>
-    big ? theme.fontSize.xl : theme.fontSize.l};
-  /* f      font-weight: ${({ theme }) =>
-    theme.bold}; */
+    big ? theme.fontSizexl : theme.fontSizel};
+  font-weight: ${({ theme }) => theme.bold};
 `;
 
 export default Heading;
