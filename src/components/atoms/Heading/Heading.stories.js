@@ -6,7 +6,7 @@ export default {
   component: Heading,
 };
 
-// eslint-disable-next-line react/jsx-props-no-spreading
+/* eslint-disable react/jsx-props-no-spreading */
 const Template = (args) => <Heading {...args} />;
 
 export const Normal = Template.bind({});
