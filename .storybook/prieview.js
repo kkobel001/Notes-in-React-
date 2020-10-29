@@ -1,12 +1,15 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import StoryRouter from 'storybook-react-router';
 import { theme } from './theme/mainTheme';
 
 export const decorators = [
   (Story) => (
-    <ThemeProvider theme={theme}>
-      <Story />
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Story />
+      </ThemeProvider>
+    </Router>
   ),
 ];
 

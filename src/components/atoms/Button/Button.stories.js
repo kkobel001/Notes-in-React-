@@ -25,10 +25,3 @@ Secondary.args = {
   text: 'Secondary',
   primary: false,
 };
-
-// export const Primary = Template.bind() => (
-//   <Button> Primary Button </Button>
-// );
-// export const Secondary = () => (
-//   <Button> Hello KAsia </Button>
-// );
