@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
+// import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 const MainTemplates = ({ children }) => (
   <div>

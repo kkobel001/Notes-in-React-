@@ -11,8 +11,8 @@ import {
 } from 'react-router-dom';
 
 const Root = () => (
-  <MainTemplates>
-    <BrowserRouter>
+  <BrowserRouter>
+    <MainTemplates>
       <Switch>
         <Route exact path="/" component={Notes} />
         <Route
@@ -24,8 +24,8 @@ const Root = () => (
           component={Twitters}
         />
       </Switch>
-    </BrowserRouter>
-  </MainTemplates>
+    </MainTemplates>
+  </BrowserRouter>
 );
 
 export default Root;
