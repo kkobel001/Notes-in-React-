@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
@@ -62,25 +61,29 @@ const StyledLinkButton = styled.a`
   top: 50%;
   transform: translateY(-50%);
 `;
-// eslint-disable-next-line react/prop-types
-const Card = ({ cardType }) => (
+const Card = ({
+  cardType,
+  created,
+  content,
+  twitterName,
+  title,
+  articaleUrl,
+}) => (
   <StyledWrapper>
     <InnerWrapper activeColor={cardType}>
-      <Heading>Hello Roman</Heading>
-      <DateInfo> 3 days</DateInfo>
+      <Heading>{title}</Heading>
+      <DateInfo> {created} </DateInfo>
       {cardType === 'twitter' && (
-        <StyledAvatar src="https://avatars.io/twitter/hello_roman" />
+        <StyledAvatar
+          src={`https://avatars.io/twitter/${twitterName}`}
+        />
       )}
       {cardType === 'article' && (
-        <StyledLinkButton href="https://youtube.com/helloroman" />
+        <StyledLinkButton href={articaleUrl} />
       )}
     </InnerWrapper>
     <InnerWrapper flex>
-      <Paragraph>
-        ahdhdhffjhhfrhfhffhfhfhfh fhfhhfhf
-        fhffjfjfj jfjfjjf fjjfjfjfjf fjfhhff
-        fjfjjfjfj fjfhhfffjfj fjfjjfjfjfj
-      </Paragraph>
+      <Paragraph>{content}</Paragraph>
       <Button secondary> REMOVE </Button>
     </InnerWrapper>
   </StyledWrapper>
@@ -92,8 +95,15 @@ Card.propTypes = {
     'twitter',
     'article',
   ]),
+  title: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  twitterName: PropTypes.string,
+  articaleUrl: PropTypes.string,
+  content: PropTypes.string.isRequired,
 };
 Card.defaultProps = {
   cardType: 'note',
+  twitterName: null,
+  articaleUrl: null,
 };
 export default Card;

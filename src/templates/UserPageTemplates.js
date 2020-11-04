@@ -1,6 +1,6 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
+
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 const UserPageTemplates = ({
@@ -14,6 +14,7 @@ const UserPageTemplates = ({
 );
 UserPageTemplates.propTypes = {
   children: PropTypes.element.isRequired,
+
   // eslint-disable-next-line react/require-default-props
   pageType: PropTypes.oneOf([
     'note',
@@ -23,6 +24,6 @@ UserPageTemplates.propTypes = {
 };
 
 UserPageTemplates.defaultPropos = {
-  pageType: 'none',
+  pageType: 'note',
 };
 export default UserPageTemplates;

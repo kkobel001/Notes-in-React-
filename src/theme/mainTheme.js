@@ -6,8 +6,8 @@ export const theme = {
   grey200: 'hsl(0, 0%,90%)',
   black: 'hsl(0, 0%,0%)',
   light: 300,
-  bold: 300,
-  fontSizeS: '20px',
-  fontSizexl: '60px',
-  fontSizel: '40px',
+  bold: 600,
+  fontSizeS: '1.6rem',
+  fontSizexl: '4rem',
+  fontSizel: '2.4rem',
 };

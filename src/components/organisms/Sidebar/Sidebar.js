@@ -48,7 +48,7 @@ const StyledLinksList = styled.ul`
 
 const Sidebar = (pageType) => (
   <StyledWrapper activeColor={pageType}>
-    <StyledLogoLink to="/" />
+    <StyledLogoLink to="/notes" />
     <StyledLinksList>
       <li>
         <ButtonIcon
