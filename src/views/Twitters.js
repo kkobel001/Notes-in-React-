@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 import React from 'react';
 import UserPageTemplates from 'templates/UserPageTemplates';
 import Card from 'components/molecules/Card/Card';
@@ -33,10 +34,10 @@ const twitter = [
   },
 ];
 const Twitters = () => (
-  <UserPageTemplates pageType="twitter">
+  <UserPageTemplates pageType="twitters">
     {twitter.map((item) => (
       <Card
-        cardType="article"
+        cardType="twitters"
         title={item.title}
         content={item.content}
         twitterName={item.twitterName}

@@ -1,6 +1,6 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 const UserPageTemplates = ({
@@ -13,17 +13,20 @@ const UserPageTemplates = ({
   </>
 );
 UserPageTemplates.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node,
+  ]),
 
   // eslint-disable-next-line react/require-default-props
   pageType: PropTypes.oneOf([
-    'note',
-    'twitter',
-    'article',
+    'notes',
+    'twitters',
+    'articles',
   ]),
 };
 
 UserPageTemplates.defaultPropos = {
-  pageType: 'note',
+  pageType: 'notes',
 };
 export default UserPageTemplates;

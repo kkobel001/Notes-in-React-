@@ -4,6 +4,7 @@ import Notes from 'views/Notes';
 import Articales from 'views/Articales';
 import Twitters from 'views/Twitters';
 import DetailsPage from 'views/DetailsPage';
+// import { routes } from 'routes';
 
 import {
   BrowserRouter,

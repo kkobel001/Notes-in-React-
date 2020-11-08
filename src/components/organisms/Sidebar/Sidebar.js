@@ -1,5 +1,8 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import bulbIcon from 'assets/icons/bulb.svg';
@@ -52,7 +55,6 @@ const Sidebar = (pageType) => (
     <StyledLinksList>
       <li>
         <ButtonIcon
-          exact
           as={NavLink}
           to="/"
           icon={penIcon}
@@ -83,5 +85,17 @@ const Sidebar = (pageType) => (
     />
   </StyledWrapper>
 );
+
+Sidebar.propTypes = {
+  pageType: PropTypes.oneOf([
+    'notes',
+    'twitters',
+    'articles',
+  ]),
+};
+
+Sidebar.defaultPropos = {
+  pageType: 'notes',
+};
 
 export default Sidebar;

@@ -4,6 +4,7 @@ module.exports = {
     'prettier',
     'prettier/react',
   ],
+  parser: 'babel-eslint',
   env: {
     jest: true,
   },

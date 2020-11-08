@@ -48,16 +48,17 @@ const GridTemplate = ({ children, pageType }) => (
   </UserPageTemplates>
 );
 GridTemplate.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object)
+    .isRequired,
 
   pageType: PropTypes.oneOf([
-    'note',
-    'twitter',
-    'article',
+    'notes',
+    'twitters',
+    'articles',
   ]),
 };
 
 GridTemplate.defaultPropos = {
-  pageType: 'note',
+  pageType: 'notes',
 };
 export default GridTemplate;
