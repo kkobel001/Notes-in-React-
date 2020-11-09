@@ -47,4 +47,11 @@ const Twitters = () => (
     ))}
   </UserPageTemplates>
 );
+
+// const rootReducer = (
+//   state = inistalState,
+//   action,
+// ) => {
+//   console.log(action);
+// };
 export default Twitters;
