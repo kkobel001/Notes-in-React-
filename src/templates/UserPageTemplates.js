@@ -16,7 +16,7 @@ UserPageTemplates.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.node,
-  ]),
+  ]).isRequired,
 
   // eslint-disable-next-line react/require-default-props
   pageType: PropTypes.oneOf([

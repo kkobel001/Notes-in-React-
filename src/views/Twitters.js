@@ -1,57 +1,66 @@
-/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable no-undef */
 import React from 'react';
-import UserPageTemplates from 'templates/UserPageTemplates';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card/Card';
 
-const twitter = [
-  {
-    title: 'React on my mind',
-    content:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset',
-    twitterName: 'https://www.lipsum.com/',
-    created: '1day',
-  },
-  {
-    title: 'React on my mind',
-    content:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset',
-    twitterName: 'https://www.lipsum.com/',
-    ccreated: '1day',
-  },
-  {
-    title: 'React on my mind',
-    content:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset',
-    twitterName: 'https://www.lipsum.com/',
-    created: '1day',
-  },
-  {
-    title: 'React on my mind',
-    content:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset',
-    twitterName: 'https://www.lipsum.com/',
-    created: '1day',
-  },
-];
-const Twitters = () => (
-  <UserPageTemplates pageType="twitters">
-    {twitter.map((item) => (
-      <Card
-        cardType="twitters"
-        title={item.title}
-        content={item.content}
-        twitterName={item.twitterName}
-        created={item.created}
-        key={item.title}
-      />
-    ))}
-  </UserPageTemplates>
+const Twitters = ({ twitters }) => (
+  <GridTemplate pageType="twitters">
+    {twitters.map(
+      ({
+        title,
+        content,
+        twitterName,
+        created,
+        id,
+      }) => (
+        <Card
+          id={id}
+          cardType="twitters"
+          title={title}
+          content={content}
+          twitterName={twitterName}
+          created={created}
+          key={id}
+        />
+      ),
+    )}
+  </GridTemplate>
 );
 
-// const rootReducer = (
-//   state = inistalState,
-//   action,
-// ) => {
-//   console.log(action);
-// };
-export default Twitters;
+Twitters.propTypes = {
+  twitters: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    cardType: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    twitterName: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+  }),
+};
+
+Twitters.propTypes = {
+  twitters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: ProTypes.number.isRequired,
+      cardeType: PropTypes.string.isRequired,
+      titile: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      twitterNAme: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Twitters.defaultProps = {
+  twitters: [],
+};
+const mapStateToProps = (state) => {
+  const { twitters } = state;
+  return { twitters };
+};
+
+export default connect(mapStateToProps)(Twitters);
