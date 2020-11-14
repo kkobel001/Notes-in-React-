@@ -10,6 +10,7 @@ import Button from 'components/atoms/Button/Button';
 import LogoutIcon from 'assets/icons/logout.svg';
 import { connect } from 'react-redux';
 import { removeItem as removeItemAction } from 'actions';
+import withContext from 'context';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -82,7 +83,7 @@ class Card extends Component {
   render() {
     const {
       id,
-      cardType,
+      pageContext,
       title,
       created,
       twitterName,
@@ -94,22 +95,22 @@ class Card extends Component {
 
     if (redirect) {
       return (
-        <Redirect to={`${cardType}/${id}`} />
+        <Redirect to={`${pageContext}/${id}`} />
       );
     }
     return (
       <StyledWrapper
         onClick={this.handleCardClick}
       >
-        <InnerWrapper activeColor={cardType}>
+        <InnerWrapper activeColor={pageContext}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
-          {cardType === 'twitters' && (
+          {pageContext === 'twitters' && (
             <StyledAvatar
               src={`https://avatars.io/twitter/${twitterName}`}
             />
           )}
-          {cardType === 'articles' && (
+          {pageContext === 'articles' && (
             <StyledLinkButton href={articleUrl} />
           )}
         </InnerWrapper>
@@ -117,7 +118,7 @@ class Card extends Component {
           <Paragraph>{content}</Paragraph>
           <Button
             onClick={() =>
-              removeItem(cardType, id)
+              removeItem(pageContext, id)
             }
             secondary
           >
@@ -131,7 +132,7 @@ class Card extends Component {
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,
-  cardType: PropTypes.oneOf([
+  pageContext: PropTypes.oneOf([
     'notes',
     'twitters',
     'articles',
@@ -145,7 +146,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  cardType: 'notes',
+  pageContext: 'notes',
   twitterName: null,
   articleUrl: null,
 };
@@ -156,4 +157,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   null,
   mapDispatchToProps,
-)(Card);
+)(withContext(Card));

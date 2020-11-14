@@ -3,12 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
-const UserPageTemplates = ({
-  children,
-  pageType,
-}) => (
+const UserPageTemplates = ({ children }) => (
   <>
-    <Sidebar pageType={pageType} />
+    <Sidebar />
     {children}
   </>
 );
@@ -17,13 +14,6 @@ UserPageTemplates.propTypes = {
     PropTypes.element,
     PropTypes.node,
   ]).isRequired,
-
-  // eslint-disable-next-line react/require-default-props
-  pageType: PropTypes.oneOf([
-    'notes',
-    'twitters',
-    'articles',
-  ]),
 };
 
 UserPageTemplates.defaultPropos = {
