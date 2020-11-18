@@ -77,11 +77,12 @@ class GridTemplate extends Component {
           </StyledPageHeader>
           <StyledGrid>{children}</StyledGrid>
           <StyledButtonIcon
-            onClick={this.handleNewItemBarToggle}
+            onClick={this.toggleNewItemBar}
             icon={plusIcon}
             activecolor={pageContext}
           />
           <NewItemBar
+            handleClose={this.toggleNewItemBar}
             isVisible={isNewItemBarVisible}
           />
         </StyledWrapper>

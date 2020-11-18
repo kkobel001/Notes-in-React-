@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -7,6 +8,14 @@ import Heading from 'components/atoms/Heading/Heading';
 import withContext from 'hoc/withContext';
 import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'actions';
+import {
+  Formik,
+  Form,
+  // eslint-disable-next-line no-unused-vars
+  Fields,
+  // eslint-disable-next-line no-unused-vars
+  ErrorMessage,
+} from 'formik';
 
 const StyledWrapper = styled.div`
   border-left: 10px solid
@@ -29,7 +38,10 @@ const StyledWrapper = styled.div`
   );
   transition: transform 0.25s ease-in-out;
 `;
-
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
 const StyledTextArea = styled(Input)`
   border-radius: 20px;
   margin: 30px 0 100px;
@@ -42,37 +54,82 @@ const NewItemBar = ({
   pageContext,
   isVisible,
   addItem,
+  handleClose,
 }) => (
   <StyledWrapper
     isVisible={isVisible}
     activecolor={pageContext}
   >
     <Heading big> Create new</Heading>
-    <StyledInput
-      placeholder={
-        pageContext === 'twitters'
-          ? 'Account name eg. hello_roman'
-          : 'Title'
-      }
-    />
-    {pageContext === 'articakes' && (
-      <StyledInput placeholder="link" />
-    )}
-    <StyledTextArea
-      as="textarea"
-      placeholder="title"
-    />
-    <Button
-      onClick={() =>
-        addItem(pageContext, {
-          title: 'Hello Roman',
-          content: 'lorem impahdfhfhf',
-        })
-      }
-      activecolor={pageContext}
+    <Formik
+      initialValues={{
+        title: '',
+        created: '',
+        content: '',
+        articleUrl: '',
+        twitterNAme: '',
+      }}
+      onSubmit={(values) => {
+        addItem(pageContext, values);
+        handleClose();
+      }}
     >
-      Add note
-    </Button>
+      {({
+        values,
+        // eslint-disable-next-line no-unused-vars
+        errors,
+        // eslint-disable-next-line no-unused-vars
+        touched,
+        handleChange,
+        handleBlur,
+        // eslint-disable-next-line no-unused-vars
+        handleSubmit,
+        // eslint-disable-next-line no-unused-vars
+        isSubmitting,
+      }) => (
+        <StyledForm>
+          <StyledInput
+            type="text"
+            name="title"
+            placeholder="title"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.twitterName}
+          />
+          {pageContext === 'twitters' && (
+            <StyledInput
+              placeholder="twitter name eg. hello_roman"
+              type="text"
+              name="twitterName"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.twitterName}
+            />
+          )}
+
+          {pageContext === 'articakes' && (
+            <StyledInput
+              placeholder="link"
+              type="text"
+              name="articleUrl"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.content}
+            />
+          )}
+          <StyledTextArea
+            as="textarea"
+            placeholder="description"
+          />
+          <Button
+            type="submit"
+            activecolor={pageContext}
+          >
+            Add note
+          </Button>
+        </StyledForm>
+      )}
+    </Formik>
   </StyledWrapper>
 );
 NewItemBar.propTypes = {
