@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 import styled, { css } from 'styled-components';
+import magnifierIcon from 'assets/icons/magnifier.svg';
 
 const Input = styled.input`
   padding: 15px 30px;
-  font-size: ${({ theme }) => theme.bold};
+  font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.regular};
   background-color: ${({ theme }) =>
     theme.grey100};
@@ -22,7 +23,7 @@ const Input = styled.input`
       padding: 10px 20px 10px 40px;
       font-size: ${({ theme }) =>
         theme.fontSizeS};
-
+      background-image: url(${magnifierIcon});
       background-size: 20px;
       bakcground-position: 10px 50%;
       background-repeat: no-repeat;

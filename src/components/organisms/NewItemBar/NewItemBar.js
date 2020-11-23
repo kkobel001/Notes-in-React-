@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -8,14 +7,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import withContext from 'hoc/withContext';
 import { connect } from 'react-redux';
 import { addItem as addItemAction } from 'actions';
-import {
-  Formik,
-  Form,
-  // eslint-disable-next-line no-unused-vars
-  Fields,
-  // eslint-disable-next-line no-unused-vars
-  ErrorMessage,
-} from 'formik';
+import { Formik, Form } from 'formik';
 
 const StyledWrapper = styled.div`
   border-left: 10px solid
@@ -140,12 +132,14 @@ NewItemBar.propTypes = {
   ]),
   isVisible: PropTypes.bool,
   addItem: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 NewItemBar.defaultProps = {
   pageContext: 'notes',
   isVisible: false,
 };
+
 const mapDispatchToProps = (dispatch) => ({
   addItem: (itemType, itemContent) =>
     dispatch(

@@ -11,8 +11,10 @@ export const addItem = (
   itemType,
   itemContent,
 ) => {
-  const getId = () => `_$Math.random().toString(36) 
-  .substar(2,9)}`;
+  const getId = () =>
+    `_${Math.random()
+      .toString(36)
+      .substar(2, 9)}`;
   return {
     type: 'ADD_ITEM',
 

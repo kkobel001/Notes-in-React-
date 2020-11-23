@@ -1,5 +1,4 @@
 /* eslint-disable react/require-default-props */
-/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -10,7 +9,7 @@ import logoutIcon from 'assets/icons/logout.svg';
 import penIcon from 'assets/icons/pen.svg';
 import twitterIcon from 'assets/icons/twitter.svg';
 import plusIcon from 'assets/icons/plus.svg';
-import withContext from 'context';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.nav`
   position: fixed;

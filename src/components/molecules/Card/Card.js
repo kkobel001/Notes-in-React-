@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
@@ -10,7 +8,7 @@ import Button from 'components/atoms/Button/Button';
 import LogoutIcon from 'assets/icons/logout.svg';
 import { connect } from 'react-redux';
 import { removeItem as removeItemAction } from 'actions';
-import withContext from 'context';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -26,6 +24,7 @@ const InnerWrapper = styled.div`
   position: relative;
   background-color: ${({ activeColor, theme }) =>
     activeColor ? theme[activeColor] : 'white'};
+
   :first-of-type {
     z-index: 9999;
   }
@@ -46,7 +45,7 @@ const StyledHeading = styled(Heading)`
 const DateInfo = styled(Paragraph)`
   margin: 0 0 5px;
   font-weight: ${({ theme }) => theme.bold};
-  font-size: ${({ theme }) => theme.fontSizeS};
+  font-size: ${({ theme }) => theme.fontSize.xs};
 `;
 const StyledAvatar = styled.img`
   width: 86px;
@@ -73,9 +72,10 @@ const StyledLinkButton = styled.a`
   transform: translateY(-50%);
 `;
 class Card extends Component {
-  state = {
-    redirect: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false };
+  }
 
   handleCardClick = () =>
     this.setState({ redirect: true });
@@ -95,9 +95,12 @@ class Card extends Component {
 
     if (redirect) {
       return (
-        <Redirect to={`${pageContext}/${id}`} />
+        <Redirect
+          to={`${pageContext}/details/${id}`}
+        />
       );
     }
+
     return (
       <StyledWrapper
         onClick={this.handleCardClick}

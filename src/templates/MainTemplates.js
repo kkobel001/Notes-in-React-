@@ -1,4 +1,3 @@
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -8,9 +7,10 @@ import PageContext from 'context';
 import { theme } from 'theme/mainTheme';
 
 class MainTemplates extends Component {
-  state = {
-    pageType: 'notes',
-  };
+  constructor(props) {
+    super(props);
+    this.state = { pageType: 'notes' };
+  }
 
   componentDidMount() {
     this.setCurrentPage();
@@ -35,12 +35,9 @@ class MainTemplates extends Component {
     ] = pageTypes.filter((page) =>
       pathname.includes(page),
     );
-    this.setState({ pageType: currentPage });
 
     if (prevState.pageType !== currentPage) {
       this.setState({ pageType: currentPage });
-      // eslint-disable-next-line no-console
-      console.log(this.state);
     }
   };
 
