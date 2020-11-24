@@ -13,12 +13,18 @@ import Notes from 'views/Notes';
 import Articales from 'views/Articales';
 import Twitters from 'views/Twitters';
 import DetailsPage from 'views/DetailsPage';
+import LoginPage from 'views/LoginPage';
 
 const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
       <MainTemplates>
         <Switch>
+          <Route
+            exact
+            path={routes.login}
+            component={LoginPage}
+          />
           <Route
             exact
             path={routes.home}

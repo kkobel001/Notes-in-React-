@@ -1,3 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-console */
+import axios from 'axios';
+
 export const removeItem = (itemType, id) => {
   return {
     type: 'REMOVE_ITEM',
@@ -28,12 +33,26 @@ export const addItem = (
   };
 };
 
-// const dummyArticle = {
-//   id: 1,
-//   title: 'Wake me up them Vue ends',
-//   content:
-//     'Lorem imsim dolor sit amet consectetyr . Delectus, tempora, quibusdam nautes modi ',
-//   twitterName: 'hello_roman',
-//   articleUrl: 'https//youtube.com/helloroman',
-//   creted: ' 1 day',
-// };
+export const authenticate = (
+  username,
+  password,
+) => (dispatch) => {
+  dispatch({ type: AUTH_REQUEST });
+
+  return axios
+    .post(
+      'http://localhost:9000/api/user/login',
+      {
+        username,
+        password,
+      },
+    )
+    .then((payload) => {
+      console.log(payload);
+      dispatch({ type: AUTH_SUCCESS, payload });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: AUTH_FAILURE });
+    });
+};
