@@ -1,35 +1,15 @@
-const initialState = {
-  twitters: [
-    {
-      id: 1,
-      title: 'Hello Roman',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      twitterName: 'hello_roman',
-    },
-  ],
-  articles: [
-    {
-      id: 1,
-      title: 'Hello Roman',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      articleUrl:
-        'https://youtube.com/helloroman',
-    },
-  ],
-  notes: [
-    {
-      id: 1,
-      title: 'Hello Roman',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-  ],
-};
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/named */
+/* eslint-disable no-unused-vars */
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  AUTH_SUCCESS,
+  FETCH_REQUEST,
+  FETCH_SUCCESS,
+} from 'actions';
+
+const initialState = {};
 
 const rootReducer = (
   state = initialState,
@@ -37,7 +17,19 @@ const rootReducer = (
   action,
 ) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        [action.payload.itemType]: [
+          ...action.payload.data,
+        ],
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        unserID: action.payload.data._id,
+      };
+    case ADD_ITEM:
       return {
         ...state,
 
@@ -47,10 +39,9 @@ const rootReducer = (
         ],
       };
 
-    case 'REMOVE_ITEM':
+    case REMOVE_ITEM:
       return {
         ...state,
-
         [action.payload.itemType]: [
           ...state[
             action.payload.itemType

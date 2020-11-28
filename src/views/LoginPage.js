@@ -1,6 +1,6 @@
-/* eslint-disable import/no-duplicates */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/named */
+/* eslint-disable import/no-duplicates */
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Form } from 'formik';
@@ -36,7 +36,6 @@ const StyledLink = styled(Link)`
   text-transform: uppercase;
   margin: 20px 0 50px;
 `;
-
 const LoginPage = ({ userID, authenticate }) => (
   <AuthTemplate>
     <Formik
@@ -52,6 +51,7 @@ const LoginPage = ({ userID, authenticate }) => (
         if (userID) {
           return <Redirect to={routes.home} />;
         }
+
         return (
           <>
             <Heading>Sign in</Heading>
