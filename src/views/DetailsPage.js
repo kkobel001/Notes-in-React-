@@ -1,67 +1,72 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-typos */
 /* eslint-disable react/state-in-constructor */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-underscore-dangle */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import DetailsTemplate from 'templates/DetailsTemplate';
-import { routes } from 'routes';
+import withContext from 'hoc/withContext';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 class DetailsPage extends Component {
   state = {
-    pageType: 'notes',
+    activeItem: {
+      title: '',
+      content: '',
+      articleUrl: '',
+      twitterName: '',
+    },
   };
 
   componentDidMount() {
-    const { match } = this.props;
-
-    switch (match.path) {
-      case routes.twitter:
-        this.setState({ pageType: 'twitters' });
-        break;
-      case routes.note:
-        this.setState({ pageType: 'notes' });
-        break;
-
-      case routes.articale:
-        this.setState({ pageType: 'articles' });
-        break;
-
-      default:
-        console.log(
-          'Something went wrong with matching paths',
-        );
+    if (this.props.activeItem) {
+      const [activeItem] = this.props.activeItem;
+      this.setStete({ activeItem });
+    } else {
+      const { id } = this.props.match.params;
+      axios
+        .get(
+          `htto://localhost:9000/api/user/register/${id}`,
+        )
+        .then(({ data }) => {
+          this.setState({ activeItem: data });
+        })
+        .catch((err) => console.log(err));
     }
   }
 
   render() {
-    const dummyArticle = {
-      id: 1,
-      title: 'Wake me up them Vue ends',
-      content:
-        'Lorem imsim dolor sit amet consectetyr . Delectus, tempora, quibusdam nautes modi ',
-      twitterName: 'hello_roman',
-      articleUrl: 'https//youtube.com/helloroman',
-      creted: ' 1 day',
-    };
-
-    const { pageType } = this.state;
+    const { activeItem } = this.state;
 
     return (
       <DetailsTemplate
-        pageType={pageType}
-        titile={dummyArticle}
-        created={dummyArticle.creted}
-        content={dummyArticle.content}
-        articleUrl={dummyArticle.articleUrl}
-        twitterName={dummyArticle.twitterName}
+        title={activeItem.title}
+        content={activeItem.content}
+        articleUrl={activeItem.articleUrl}
+        twitterName={activeItem.twitterName}
       />
     );
   }
 }
 
-DetailsPage.PropTypes = {
-  match: PropTypes.string.isRequired,
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
+
+  if (state[ownProps.pageContext].length) {
+    return {
+      activeItem: state[
+        ownProps.pageContext
+      ].filter(
+        (item) =>
+          item._id === ownProps.match.params.id,
+      ),
+    };
+  }
+  return {};
 };
 
-export default DetailsPage;
+export default withContext(
+  connect(mapStateToProps)(DetailsPage),
+);

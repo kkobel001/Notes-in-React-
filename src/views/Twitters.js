@@ -22,15 +22,13 @@ class Twitters extends Component {
             title,
             content,
             twitterName,
-            created,
-            id,
+            _id: id,
           }) => (
             <Card
               id={id}
               title={title}
               content={content}
               twitterName={twitterName}
-              created={created}
               key={id}
             />
           ),
@@ -43,12 +41,11 @@ class Twitters extends Component {
 Twitters.propTypes = {
   twitters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
       cardeType: PropTypes.string.isRequired,
       titile: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       twitterNAme: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
     }),
   ),
 };
